@@ -14,7 +14,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (formData) => {
-    fetch("http://localhost:5000/api/login", {
+    fetch("https://ph-task-server-self.vercel.app/api/login", {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {
@@ -80,7 +80,10 @@ const Login = () => {
           Submit
         </button>
         <div className="text-black mt-2">
-          Don't have an account? <Link to="/signup" className=" underline">Sign Up</Link>
+          Don't have an account?{" "}
+          <Link to="/signup" className=" underline">
+            Sign Up
+          </Link>
         </div>
       </form>
     </div>

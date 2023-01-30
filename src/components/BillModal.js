@@ -25,7 +25,7 @@ const BillModal = ({ closeModal, modalIsOpen, setPaid, paid, refetch }) => {
 
   const onSubmit = (formData) => {
     console.log(formData);
-    fetch("http://localhost:5000/api/add-billing", {
+    fetch("https://ph-task-server-self.vercel.app/api/add-billing", {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {

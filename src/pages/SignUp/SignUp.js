@@ -3,11 +3,10 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/";
 
   const {
     register,
@@ -15,7 +14,7 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (formData) => {
-    fetch("http://localhost:5000/api/registration", {
+    fetch("https://ph-task-server-self.vercel.app/api/registration", {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {

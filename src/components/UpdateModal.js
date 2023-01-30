@@ -35,13 +35,16 @@ const UpdateModal = ({
 
   const onSubmit = (formData) => {
     console.log(formData);
-    fetch(`http://localhost:5000/api/update-billing/${bill._id}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "PUT",
-      body: JSON.stringify(formData),
-    })
+    fetch(
+      `https://ph-task-server-self.vercel.app/api/update-billing/${bill._id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "PUT",
+        body: JSON.stringify(formData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -70,7 +73,7 @@ const UpdateModal = ({
               Full Name
             </label>
             <input
-              {...register("fullName", { required: true ,})}
+              {...register("fullName", { required: true })}
               type="text"
               id="fullName"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-72 md:w-96 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -85,7 +88,7 @@ const UpdateModal = ({
               Email
             </label>
             <input
-              {...register("email", { required: true, })}
+              {...register("email", { required: true })}
               type="email"
               id="email"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-72 md:w-96 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

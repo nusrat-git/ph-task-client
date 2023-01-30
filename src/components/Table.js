@@ -39,7 +39,7 @@ const Table = () => {
     queryKey: ["billing-list"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/api/billing-list?page=${page}&size=${size}`
+        `https://ph-task-server-self.vercel.app/api/billing-list?page=${page}&size=${size}`
       );
       const data = await res.json();
       setCount(data[0]);
@@ -57,7 +57,9 @@ const Table = () => {
   const pageHandler = (num) => {
     console.log(num);
     setPage(num);
-    fetch(`http://localhost:5000/api/billing-list?page=${num}&size=${size}`)
+    fetch(
+      `https://ph-task-server-self.vercel.app/api/billing-list?page=${num}&size=${size}`
+    )
       .then((res) => res.json())
       .then((data) => {
         billings = data;
@@ -68,7 +70,7 @@ const Table = () => {
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/api/delete-billing/${id}`, {
+    fetch(`https://ph-task-server-self.vercel.app/api/delete-billing/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
