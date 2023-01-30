@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-//   const [userInfo, setUserInfo] = useState({});
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
   const {
     register,
@@ -10,7 +15,6 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (formData) => {
-    // setUserInfo(formData);
     fetch("http://localhost:5000/api/registration", {
       method: "POST",
       body: JSON.stringify(formData),
@@ -21,13 +25,13 @@ const SignUp = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        localStorage.setItem("Token", data.data.token);
+        navigate(from, { replace: true });
       })
       .catch((err) => console.log(err));
-    // console.log(userInfo);
   };
   return (
     <div>
-      {" "}
       <div className="md:mt-10 shadow-lg py-20 px-6 rounded-md md:w-96 mx-auto bg-zinc-300">
         <h1 className="text-2xl font-bold mb-8">Please Sign Up</h1>
         <form onSubmit={handleSubmit(onSubmit)} className=" mx-auto">
@@ -94,6 +98,12 @@ const SignUp = () => {
             Submit
           </button>
         </form>
+        <div className="text-black mt-2">
+          Don't have an account?{" "}
+          <Link to="/login" className=" underline">
+            Log In
+          </Link>
+        </div>
       </div>
     </div>
   );

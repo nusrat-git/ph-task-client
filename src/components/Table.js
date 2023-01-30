@@ -35,8 +35,6 @@ const Table = () => {
     setBill({});
   }
 
-  // const [billings, setBillings] = useState([]);
-
   let { data: billings = [], refetch } = useQuery({
     queryKey: ["billing-list"],
     queryFn: async () => {
@@ -45,12 +43,10 @@ const Table = () => {
       );
       const data = await res.json();
       setCount(data[0]);
-      console.log(data);
       return data[1];
     },
   });
 
-  // const count = billings.length;
   const size = 10;
 
   const [page, setPage] = useState(0);
